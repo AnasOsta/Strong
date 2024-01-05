@@ -93,7 +93,7 @@ export default function SignUp(props: any, { navigation }: any) {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <>
-          <Button title="Kayıt Ol" onPress={signUp} />
+          <Button color={"#0CBBCF"} title="Kayıt Ol" onPress={signUp} />
         </>
       )}
     </View>
@@ -104,13 +104,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     flex: 1,
     justifyContent: "center",
+    borderRadius: 10,
+    padding: 50,
   },
   input: {
     marginVertical: 4,
     height: 50,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderRadius: 4,
     padding: 10,
-    backgroundColor: "white",
   },
 });

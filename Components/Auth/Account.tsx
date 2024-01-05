@@ -10,7 +10,7 @@ import { useState, useContext } from "react";
 import { db } from "../../firebaseConfig";
 import { doc, updateDoc } from "@firebase/firestore";
 import { UserContext } from "../../Context/UserContext";
-export default function Account() {
+export default function Account(props: any) {
   const [editedData, setEditedData] = useState(false);
   const { user, setUser } = useContext(UserContext);
 
@@ -26,29 +26,33 @@ export default function Account() {
       {user[0]?.id ? (
         <View style={styles.container}>
           {editedData ? (
-            <View>
+            <View style={styles.container1}>
               <TextInput
+                style={styles.input}
                 onChangeText={(text) => setUser({ ...user, name: text })}
               >
                 {user[0]?.name}
               </TextInput>
               <TextInput
+                style={styles.input}
                 onChangeText={(text) => setUser({ ...user, email: text })}
               >
                 {user[0]?.email}
               </TextInput>
-              <Button onPress={edit} title="Kaydet"></Button>
+              <Button color={"#0CBBCF"} onPress={edit} title="Kaydet"></Button>
               <Button
+                color={"#BE0E0E"}
                 onPress={() => setEditedData(false)}
                 title="Vazgeç"
               ></Button>
             </View>
           ) : (
-            <View style={styles.container}>
-              <Text>Ad : {user[0]?.name}</Text>
-              <Text>E-posta : {user[0]?.email}</Text>
-              <Text>Rule : {user[0]?.rule}</Text>
+            <View style={styles.container1}>
+              <Text style={styles.TextStyle}>Ad : {user[0]?.name}</Text>
+              <Text style={styles.TextStyle}>E-posta : {user[0]?.email}</Text>
+              <Text style={styles.TextStyle}>Rule : {user[0]?.rule}</Text>
               <Button
+                color={"#0CBBCF"}
                 title="Düzenle"
                 onPress={() => setEditedData(true)}
               ></Button>
@@ -63,9 +67,25 @@ export default function Account() {
 }
 
 const styles = StyleSheet.create({
+  container1: {
+    borderWidth: 1,
+    borderColor: "#C2BEBE",
+    padding: 20,
+  },
   container: {
-    flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    padding: 50,
+    flex: 1,
+  },
+  input: {
+    marginVertical: 4,
+    height: 50,
+    borderBottomWidth: 1,
+    borderRadius: 4,
+    padding: 10,
+  },
+  TextStyle: {
+    height: 50,
+    width: 250,
   },
 });

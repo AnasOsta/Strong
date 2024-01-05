@@ -1,25 +1,78 @@
 //import liraries
-import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { useEffect, useState } from "react";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { dbauth, db } from "../../firebaseConfig";
+import { onAuthStateChanged } from "@firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 
+import UsersItem from "../../Components/UsersItem";
 // create a component
 const Admin = () => {
+  const [users, setUsers] = useState([]);
+  const fetchData = async () => {
+    try {
+      if (dbauth.currentUser) {
+        setUsers([]);
+        // Reference to the Firestore collection
+        const myCollectionRef = collection(db, "Users");
+
+        // Fetch data from Firestore
+        const querySnapshot = await getDocs(myCollectionRef);
+
+        // Extract data from the query snapshot
+        querySnapshot.forEach((doc) => {
+          setUsers((currentUser) => [
+            ...currentUser,
+            {
+              ...doc.data(),
+              id: doc.id,
+            },
+          ]);
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    onAuthStateChanged(dbauth, (user1) => {
+      if (user1) {
+        fetchData();
+      }
+    });
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Admin</Text>
+    <View style={styles.appContainer}>
+      {dbauth.currentUser?.uid ? (
+        <>
+          <FlatList
+            data={users}
+            renderItem={(item) => {
+              return (
+                <>
+                  <UsersItem data={item.item} />
+                </>
+              );
+            }}
+            alwaysBounceVertical={false}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          />
+        </>
+      ) : (
+        <>{console.log(false)}</>
+      )}
     </View>
   );
 };
 
-// define your styles
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#2c3e50",
+    paddingTop: 50,
+    paddingHorizontal: 16,
   },
 });
-
-//make this component available to the app
 export default Admin;

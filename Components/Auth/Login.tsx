@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TextInput,
   Button,
+  Text,
   ActivityIndicator,
   KeyboardAvoidingView,
 } from "react-native";
@@ -33,6 +34,7 @@ const Login = (props: any, { navigation }: any) => {
   return (
     <>
       <View style={styles.container}>
+        <Text style={styles.welcome}>Welcome</Text>
         <KeyboardAvoidingView behavior="padding">
           <TextInput
             style={styles.input}
@@ -54,7 +56,7 @@ const Login = (props: any, { navigation }: any) => {
             <ActivityIndicator size="large" color="#0000ff" />
           ) : (
             <>
-              <Button title="Giriş Yap" onPress={signIn} />
+              <Button color={"#0CBBCF"} title="Giriş Yap" onPress={signIn} />
             </>
           )}
         </KeyboardAvoidingView>
@@ -69,13 +71,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     flex: 1,
     justifyContent: "center",
+    borderRadius: 10,
+    padding: 50,
   },
   input: {
     marginVertical: 4,
     height: 50,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderRadius: 4,
     padding: 10,
-    backgroundColor: "white",
+  },
+  welcome: {
+    color: "black",
+    fontSize: 30,
   },
 });

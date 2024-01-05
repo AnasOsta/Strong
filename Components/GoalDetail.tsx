@@ -72,7 +72,7 @@ export default function GoalDetail(props) {
           >
             <MapMarker coordinate={props.data.locationE} />
           </MapView>
-          <Text>Spor Adı : {props.data.text}</Text>
+          <Text>Spor Adı : {props.data.name}</Text>
           <Text>
             Tarih : {props.data.date.date} {props.data.date.time}
           </Text>
