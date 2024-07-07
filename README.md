@@ -21,8 +21,8 @@
 
 ### المتطلبات
 - **بيئة تطوير**: Node.js
-- **قاعدة البيانات**: MongoDB
-- **الإطار الأمامي**: React
+- **قاعدة البيانات**: FireBase
+- **الإطار الأمامي**: React Native
 
 ### التثبيت
 1. استنساخ المستودع:
@@ -65,8 +65,8 @@ The "egzersiz" application allows you to add, delete, edit, and complete exercis
 
 ### Requirements
 - **Development Environment**: Node.js
-- **Database**: MongoDB
-- **Frontend Framework**: React
+- **Database**: FireBase
+- **Frontend Framework**: React Native
 
 ### Installation
 
@@ -107,8 +107,8 @@ Install dependencies:
 
 ### Gereksinimler
 - **Geliştirme Ortamı**: Node.js
-- **Veritabanı**: MongoDB
-- **Ön Yüz Çerçevesi**: React
+- **Veritabanı**: FireBase
+- **Ön Yüz Çerçevesi**: React Native
 
 ### Kurulum
 
